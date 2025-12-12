@@ -56,3 +56,6 @@ Graphs
     topological sorting (Kahn's)
     Shortest Path (Dijkstra's)
     Minimum Spanning Tree
+
+/*THIS PROJECT HAS BEEN DEPRICATED (FOR C++)*/
+/*I WILL IMPLEMENT THE TOPICS ABOVE IN C INSTEAD*/
