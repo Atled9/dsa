@@ -34,7 +34,7 @@ size_t randfill(Arr *buff)
 	return (buff->size = buff->capacity);
 }
 
-void nsrt(Arr *buff, unsigned int ind, int val)
+void nsrt(Arr *buff, size_t ind, int val)
 {
 	if (ind > buff->size)
 		printf("index out of bounds: value will be placed at end of array\n");
@@ -49,7 +49,7 @@ void nsrt(Arr *buff, unsigned int ind, int val)
 	*pos = val;
 }
 
-void rmve(Arr *buff, unsigned int ind)
+void rmve(Arr *buff, size_t ind)
 {
 	if (ind >= buff->size)
 		printf("index out of bounds: value at end of array will be removed\n");
@@ -62,12 +62,12 @@ void rmve(Arr *buff, unsigned int ind)
 		(buff->size)--;
 }
 
-void setval(Arr *buff, unsigned int ind, int val)
+void setval(Arr *buff, size_t ind, int val)
 {
 	if (buff->a + ind < buff->a + buff->size)
 		*(buff->a + ind) = val;
 }
-int getval(Arr *buff, unsigned int ind)
+int getval(Arr *buff, size_t ind)
 {
 	if (buff->a + ind < buff->a + buff->size)
 		return *(buff->a + ind);
