@@ -5,22 +5,23 @@
 
 int main()
 {
+	size_t i;
+	int arr[TESTSIZE];
+	for (i = 0; i < TESTSIZE; i++)
+		*(arr + i) = i;
+
 	Collection *stack = initStack();
 	Collection *queue = initQueue();
-	int i;
 
 	for (i = 0; i < TESTSIZE; i++)
-		push(stack, i);
+		push(stack, arr + i);
 	for (i = 0; i < TESTSIZE; i++)
-		printf("%2d%c", pop(stack), (i%10==9 || i==TESTSIZE-1) ? '\n' : ' ');
+		printf("%2d%c", *(int*)pop(stack), (i%10==9 || i==TESTSIZE-1) ? '\n' : ' ');
 	
 	for (i = 0; i < TESTSIZE; i++)
-		enqueue(queue, i);
+		enqueue(queue, arr + i);
 	for (i = 0; i < TESTSIZE; i++)
-		printf("%2d%c", dequeue(queue), (i%10==9 || i==TESTSIZE-1) ? '\n' : ' ');
-	
-	printf("%d\n", removal(stack));
-	printf("%d\n", removal(queue));
+		printf("%2d%c", *(int*)dequeue(queue), (i%10==9 || i==TESTSIZE-1) ? '\n' : ' ');
 
 	freeCollection(stack);
 	freeCollection(queue);

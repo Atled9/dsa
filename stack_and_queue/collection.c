@@ -3,8 +3,8 @@
 
 typedef struct {
 	List *list;
-	void (*nsrt)(List *, int);
-	int (*rmve)(List *);
+	void (*nsrt)(List *, void *);
+	void *(*rmve)(List *);
 } Collection;
 
 Collection *initStack(void)
@@ -28,19 +28,19 @@ Collection *initQueue(void)
 	return queue;
 }
 
-void insertion(Collection *collection, int val)
+void insertion(Collection *collection, void *data)
 {
-	collection->nsrt(collection->list, val);
+	collection->nsrt(collection->list, data);
 }
-void (*push)(Collection *, int) = insertion;
-void (*enqueue)(Collection *, int) = insertion;
+void (*push)(Collection *, void *) = insertion;
+void (*enqueue)(Collection *, void *) = insertion;
 
-int removal(Collection *collection)
+void *removal(Collection *collection)
 {
-	collection->rmve(collection->list);
+	return collection->rmve(collection->list);
 }
-int (*pop)(Collection *) = removal;
-int (*dequeue)(Collection *) = removal;
+void *(*pop)(Collection *) = removal;
+void *(*dequeue)(Collection *) = removal;
 
 void freeCollection(Collection *collection)
 {

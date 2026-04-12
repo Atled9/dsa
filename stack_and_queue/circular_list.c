@@ -1,8 +1,7 @@
-#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct Node {
-	int data;
+	void *data;
 	struct Node *next;
 } Node;
 
@@ -18,10 +17,10 @@ List *initList(void)
 	return list;
 }
 
-void inserthead(List *list, int val)
+void inserthead(List *list, void *data)
 {
 	Node *newnode = (Node *)malloc(sizeof(Node));
-	newnode->data = val;
+	newnode->data = data;
 
 	if (!list->tail) {
 		list->tail = newnode;
@@ -31,10 +30,10 @@ void inserthead(List *list, int val)
 	newnode->next = list->tail->next;
 	list->tail->next = newnode;
 }
-void inserttail(List *list, int val)
+void inserttail(List *list, void *data)
 {
 	Node *newnode = (Node *)malloc(sizeof(Node));
-	newnode->data = val;
+	newnode->data = data;
 
 	if (!list->tail) {
 		list->tail = newnode;
@@ -46,38 +45,36 @@ void inserttail(List *list, int val)
 	list->tail = newnode;
 }
 
-int removehead(List *list)
+void *removehead(List *list)
 {
 	if (!list->tail) {
-		printf("empty list: returning -1\n");
-		return -1;
+		return NULL;
 	}
 	Node *temp = list->tail->next;
-	int val = list->tail->next->data;
+	void *data = list->tail->next->data;
 
 	if (temp == list->tail)
 	{
 		list->tail = NULL;
 		free(temp);
-		return val;
+		return data;
 	}
 	list->tail->next = list->tail->next->next;
 	free(temp);
-	return val;
+	return data;
 }
-int removetail(List *list)
+void *removetail(List *list)
 {
 	if (!list->tail) {
-		printf("empty list: returning -1\n");
-		return -1;
+		return NULL;
 	}
 	Node *temp = list->tail;
-	int val = list->tail->data;
+	void *data = list->tail->data;
 
 	if (temp == list->tail->next) {
 		list->tail = NULL;
 		free(temp);
-		return val;
+		return data;
 	}
 	Node *current = list->tail->next;
 
@@ -86,7 +83,7 @@ int removetail(List *list)
 	
 	current->next = list->tail->next;
 	list->tail = current;
-	return val;
+	return data;
 	free(temp);
 }
 

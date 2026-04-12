@@ -4,13 +4,12 @@
 typedef struct List List;
 
 List *initList(void);
-
-void inserthead(List *list, int val);
-void inserttail(List *list, int val);
-
-int removehead(List *list);
-int removetail(List *list);
-
 void freeList(List *list);
+
+void inserthead(List *list, void *data);
+void inserttail(List *list, void *data);
+
+void *removehead(List *list);
+void *removetail(List *list);
 
 #endif

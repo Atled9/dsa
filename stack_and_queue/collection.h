@@ -6,13 +6,13 @@ typedef struct Collection Collection;
 Collection *initStack(void);
 Collection *initQueue(void);
 
-void insertion(Collection *, int val);
-extern void (*push)(Collection *, int);
-extern void (*enqueue)(Collection *, int);
+void insertion(Collection *, void *data);
+extern void (*push)(Collection *, void *);
+extern void (*enqueue)(Collection *, void *);
 
-int removal(Collection *);
-extern int (*pop)(Collection *);
-extern int (*dequeue)(Collection *);
+void *removal(Collection *);
+extern void *(*pop)(Collection *);
+extern void *(*dequeue)(Collection *);
 
 void freeCollection(Collection *collection);
 
